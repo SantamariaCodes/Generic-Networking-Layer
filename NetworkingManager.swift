@@ -4,35 +4,48 @@ final class NetworkingManager {
     
     static let shared = NetworkingManager()
     
-    private init () {}
+    private init() {}
 
-    func request<T: Codable>(endpoint: TargetType, completion: @escaping (Result<T, Error>) -> Void) {
-        let url = endpoint.baseURL.appendingPathComponent(endpoint.path)
+    func request<T: Decodable>(endpoint: TargetType, completion: @escaping (Result<T, Error>) -> Void) {
+        var url = endpoint.baseURL.appendingPathComponent(endpoint.path)
+        
+        switch endpoint.task {
+        case .requestParameters(let parameters, _):
+            var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
+            urlComponents?.queryItems = parameters.map { URLQueryItem(name: $0.key, value: "\($0.value)") }
+            url = urlComponents?.url ?? url
+        }
+        
         var request = URLRequest(url: url)
         request.httpMethod = endpoint.method.rawValue
-
-        // Set headers
         endpoint.headers?.forEach { request.setValue($1, forHTTPHeaderField: $0) }
 
-        // Handle task
-        switch endpoint.task {
-        case .requestParameters(let parameters, let encoding):
-            do {
-                request = try encoding.encode(request, with: parameters)
-            } catch {
+        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in            if let error = error {
+                print("Network error: \(error)")
                 completion(.failure(error))
                 return
             }
-        }
-
-        // URLSession data task
-        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
-            // Handle response
-            // ...
+            
+            guard let data = data else {
+                print("No data received")
+                completion(.failure(NetworkingError.noData))
+                return
+            }
+            print("Response data size: \(data.count) bytes")
+            print(String(data: data, encoding: .utf8) ?? "Invalid data")
+            
+            do {
+                let decodedData = try JSONDecoder().decode(T.self, from: data)
+                completion(.success(decodedData))
+            } catch {
+                completion(.failure(error))
+            }
         }
         dataTask.resume()
     }
-
-    // NetworkingError and other extensions
-    // ...
+    
+    enum NetworkingError: Error {
+        case noData
+        // Add other cases as needed
+    }
 }

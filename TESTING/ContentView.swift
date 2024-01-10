@@ -1,37 +1,28 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var tmdbService = TMDbService()
+    @State private var latestShow: LatestTvShow?
+    @State private var errorMessage: String?
 
     var body: some View {
-        NavigationView {
-            List {
-                Section(header: Text("Latest Show")) {
-                    if let latestShow = tmdbService.latestShow {
-                        Text(latestShow.name)
-                    } else {
-                        Text("Loading latest show...")
-                            .onAppear {
-                                tmdbService.fetchShows(endpoint: .latest)
-                            }
-                    }
-                }
-
-                Section(header: Text("Top Rated Shows")) {
-                    ForEach(tmdbService.topShows, id: \.id) { show in
-                        VStack(alignment: .leading) {
-                            Text(show.name)
-                                .font(.headline)
-                            Text(show.overview)
-                                .font(.subheadline)
-                                .lineLimit(3)
-                        }
-                    }
-                }
+        VStack {
+            if let show = latestShow {
+                Text("Latest show: \(show.name)")
+            } else if let errorMessage = errorMessage {
+                Text("Error: \(errorMessage)")
+            } else {
+                Text("Fetching latest show...")
             }
-            .navigationTitle("Shows")
-            .onAppear {
-                tmdbService.fetchShows(endpoint: .topRated)
+        }
+        .onAppear {
+            let tvShowService = TvShowService()
+            tvShowService.getLatestTvShow { result in
+                switch result {
+                case .success(let show):
+                    self.latestShow = show
+                case .failure(let error):
+                    self.errorMessage = error.localizedDescription
+                }
             }
         }
     }

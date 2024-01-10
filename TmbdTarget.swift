@@ -19,12 +19,11 @@ extension TvShowTarget: TargetType {
             return .get
         }
     }
-    
     var task: HTTPTask {
         // se pasa vacio porque no necesita parameters
         switch self {
         case .getShow:
-            return .requestParameters(parameters: [:], encoding: JSONEncoding.default)
+            return .requestParameters(parameters: ["api_key": "1722fc1c5166dae1d81f050d1172510d"], encoding: JSONEncoding.default)
         }
     }
     

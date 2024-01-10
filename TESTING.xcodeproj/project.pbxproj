@@ -18,9 +18,9 @@
 		9F0D2D332B4C865800EBDDD3 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0D2D322B4C865800EBDDD3 /* TargetType.swift */; };
 		9F0D2D352B4C866E00EBDDD3 /* ParameterEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0D2D342B4C866E00EBDDD3 /* ParameterEncodable.swift */; };
 		9F0D2D372B4C869100EBDDD3 /* TmbdTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0D2D362B4C869100EBDDD3 /* TmbdTarget.swift */; };
-		9F0D2D392B4C86C900EBDDD3 /* TMDbService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0D2D382B4C86C900EBDDD3 /* TMDbService.swift */; };
 		9F0D2D3B2B4C86FE00EBDDD3 /* ShowStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0D2D3A2B4C86FE00EBDDD3 /* ShowStructure.swift */; };
 		9FA279532B4DB9DC00B2CA13 /* TvShowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA279522B4DB9DC00B2CA13 /* TvShowService.swift */; };
+		9FA279562B4DFECC00B2CA13 /* TVShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA279552B4DFECC00B2CA13 /* TVShowViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,9 +56,9 @@
 		9F0D2D322B4C865800EBDDD3 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		9F0D2D342B4C866E00EBDDD3 /* ParameterEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncodable.swift; sourceTree = "<group>"; };
 		9F0D2D362B4C869100EBDDD3 /* TmbdTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TmbdTarget.swift; sourceTree = "<group>"; };
-		9F0D2D382B4C86C900EBDDD3 /* TMDbService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDbService.swift; sourceTree = "<group>"; };
 		9F0D2D3A2B4C86FE00EBDDD3 /* ShowStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowStructure.swift; sourceTree = "<group>"; };
 		9FA279522B4DB9DC00B2CA13 /* TvShowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvShowService.swift; sourceTree = "<group>"; };
+		9FA279552B4DFECC00B2CA13 /* TVShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,9 +89,9 @@
 		9F0D2CF92B4C860B00EBDDD3 = {
 			isa = PBXGroup;
 			children = (
+				9FA279552B4DFECC00B2CA13 /* TVShowViewController.swift */,
 				9FA279522B4DB9DC00B2CA13 /* TvShowService.swift */,
 				9F0D2D3A2B4C86FE00EBDDD3 /* ShowStructure.swift */,
-				9F0D2D382B4C86C900EBDDD3 /* TMDbService.swift */,
 				9F0D2D362B4C869100EBDDD3 /* TmbdTarget.swift */,
 				9F0D2D342B4C866E00EBDDD3 /* ParameterEncodable.swift */,
 				9F0D2D322B4C865800EBDDD3 /* TargetType.swift */,
@@ -286,7 +286,7 @@
 				9F0D2D312B4C863600EBDDD3 /* NetworkingManager.swift in Sources */,
 				9F0D2D372B4C869100EBDDD3 /* TmbdTarget.swift in Sources */,
 				9F0D2D082B4C860B00EBDDD3 /* ContentView.swift in Sources */,
-				9F0D2D392B4C86C900EBDDD3 /* TMDbService.swift in Sources */,
+				9FA279562B4DFECC00B2CA13 /* TVShowViewController.swift in Sources */,
 				9FA279532B4DB9DC00B2CA13 /* TvShowService.swift in Sources */,
 				9F0D2D062B4C860B00EBDDD3 /* TESTINGApp.swift in Sources */,
 			);
