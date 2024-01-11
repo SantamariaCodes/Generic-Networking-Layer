@@ -1,19 +1,21 @@
 import UIKit
 
-class LatestTvShowViewController: UIViewController {
+class TvShowViewModel: ObservableObject {
+    @Published var latestShow: LatestTvShow?
+    @Published var errorMessage: String?
 
     let tvShowService = TvShowService()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        tvShowService.getLatestTvShow { result in
+    func fetchTvShow(ranking: TVShowType) {
+        tvShowService.getTvShow(ranking: ranking) { [weak self] result in
             switch result {
-            case .success(let latestShow):
-                print("Latest show name: \(latestShow.name)")
+            case .success(let show):
+                self?.latestShow = show
             case .failure(let error):
-                print("Error: \(error.localizedDescription)")
+                self?.errorMessage = error.localizedDescription
             }
         }
     }
 }
+
+

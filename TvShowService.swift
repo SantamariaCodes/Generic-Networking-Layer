@@ -7,12 +7,11 @@ class TvShowService {
         self.networkingManager = networkingManager
     }
 
-    func getLatestTvShow(completion: @escaping (Result<LatestTvShow, Error>) -> Void) {
-        networkingManager.request(endpoint: TvShowTarget.getShow(ranking: .latest)) { result in
+    func getTvShow(ranking: TVShowType, completion: @escaping (Result<LatestTvShow, Error>) -> Void) {
+        networkingManager.request(endpoint: TvShowTarget.getShow(ranking: ranking)) { result in
             DispatchQueue.main.async {
                 completion(result)
             }
         }
     }
 }
-
